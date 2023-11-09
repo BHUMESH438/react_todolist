@@ -35,7 +35,6 @@ const App = () => {
 
   //during the edting
   const chekboxEdit = taskId => {
-    console.log(taskId);
     const checkbox = tasks.map(i => {
       if (i.id === taskId) {
         const checked = { ...i, isComplete: !i.isComplete };
