@@ -4,6 +4,7 @@ import { nanoid } from 'nanoid';
 import { ToastContainer, toast } from 'react-toastify';
 import Tasklist from './src/components/Tasklist';
 
+//if want to session storage use session storage instead of localstorage
 const getLocalStorage = taskobj => {
   let list = localStorage.getItem('list');
   if (list) {
@@ -34,7 +35,6 @@ const App = () => {
     toast.success('item added to the list');
   };
 
-  const editTask = taskId => {};
   const deleteTask = taskId => {
     const deletetask = tasks.filter(task => task.id !== taskId);
     setTasks(deletetask);
@@ -43,10 +43,10 @@ const App = () => {
     toast.error('item deleted');
   };
   return (
-    <section>
-      <ToastContainer position='top-center' />
+    <section className='section-center'>
+      <ToastContainer position='bottom-center' />
       <Form addTask={addTask} />
-      <Tasklist tasks={tasks} editTask={editTask} deleteTask={deleteTask} />
+      <Tasklist tasks={tasks} deleteTask={deleteTask} />
     </section>
   );
 };

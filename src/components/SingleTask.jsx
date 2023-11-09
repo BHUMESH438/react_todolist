@@ -1,15 +1,15 @@
 import { useState } from 'react';
 
-const SingleTask = ({ task, deleteTask, editTask }) => {
+const SingleTask = ({ task, deleteTask }) => {
   console.log(task);
-  const [isChecked, setisChecked] = useState(task.isComplete);
+  const [isChecked, setisChecked] = useState(task.isComplete); //local state
   return (
-    <div>
-      <input type='checkbox' checked={task.isComplete} onChange={() => editTask(task.id)} checked={isChecked} onChange={() => setisChecked(!isChecked)} />
+    <div className='single-item'>
+      <input type='checkbox' checked={isChecked} onChange={() => setisChecked(!isChecked)} />
 
       <p style={{ textTransform: 'capitalize', textDecoration: isChecked && 'line-through' }}>{task.text}</p>
 
-      <button className='btn remove-btn' type='button' onClick={() => deleteTask(task.id)}>
+      <button className='btn delete-btn' type='button' onClick={() => deleteTask(task.id)}>
         delete
       </button>
     </div>

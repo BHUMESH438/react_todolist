@@ -17,7 +17,7 @@ const Form = ({ addTask }) => {
     <section>
       <form onSubmit={handleSubmit}>
         <h1>todo</h1>
-        <div>
+        <div className='form-control'>
           <input type='text' className='form-input' value={taskName} onChange={e => setTaskName(e.target.value)} />
           <button type='submit' className='btn'>
             add Task
