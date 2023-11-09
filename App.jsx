@@ -4,10 +4,21 @@ import { nanoid } from 'nanoid';
 import { ToastContainer, toast } from 'react-toastify';
 import Tasklist from './src/components/Tasklist';
 
-// const setLocalstorage =
+const getLocalStorage = taskobj => {
+  let list = localStorage.getItem('list');
+  if (list) {
+    list = JSON.parse(list);
+  } else {
+    list = [];
+  }
+  return list;
+};
+
+const setLocalstorage = taskobj => localStorage.setItem('list', JSON.stringify(taskobj));
 
 const App = () => {
-  const [tasks, setTasks] = useState([]);
+  getLocalStorage();
+  const [tasks, setTasks] = useState(getLocalStorage());
 
   const addTask = taskName => {
     //object will be created
@@ -19,6 +30,7 @@ const App = () => {
     //object will be added to state display
     const updatedTask = [...tasks, newTask];
     setTasks(updatedTask);
+    setLocalstorage(updatedTask);
     toast.success('item added to the list');
   };
 
@@ -26,12 +38,13 @@ const App = () => {
   const deleteTask = taskId => {
     const deletetask = tasks.filter(task => task.id !== taskId);
     setTasks(deletetask);
+    setLocalstorage(deletetask);
     console.log('item deleted');
-    toast.success('item deleted');
+    toast.error('item deleted');
   };
   return (
     <section>
-      {/* <ToastContainer position='top-center' /> */}
+      <ToastContainer position='top-center' />
       <Form addTask={addTask} />
       <Tasklist tasks={tasks} editTask={editTask} deleteTask={deleteTask} />
     </section>

@@ -41,3 +41,4 @@ const Form = ({ addTask }) => {
 
 - to save to the local storage the key should be same name
 - stringify the obj and parse the obj from string
+- addtask,deletetask - save the redult to local storage
