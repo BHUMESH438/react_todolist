@@ -35,4 +35,9 @@ const Form = ({ addTask }) => {
 
 - ### pass the task, edittask, deletetask to tasklist component to render. every single task.and for every single task create a componet in mapfn to render
 
-- ### pass the remove,edit,task from tasklist to singleTask component and render the values. use checkbox and line-through for strike and set a state for check
+- ### pass the remove,edit,task from tasklist to singleTask component and render the values. use checkbox and line-through for strike and set a state for check and use textTransform: 'capitalize' to capitalize the first letter
+
+## step-2 save to localstorage
+
+- to save to the local storage the key should be same name
+- stringify the obj and parse the obj from string

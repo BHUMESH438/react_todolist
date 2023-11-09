@@ -6,6 +6,7 @@ const Form = ({ addTask }) => {
   const handleSubmit = e => {
     e.preventDefault();
     if (taskName === '') {
+      console.log('do not enter empty value');
       toast.error('do not enter empty value');
       return;
     }
