@@ -35,6 +35,10 @@ const App = () => {
     toast.success('item added to the list');
   };
 
+  const editTask = taskId => {
+    console.log(taskId);
+  };
+
   const deleteTask = taskId => {
     const deletetask = tasks.filter(task => task.id !== taskId);
     setTasks(deletetask);
@@ -46,7 +50,7 @@ const App = () => {
     <section className='section-center'>
       <ToastContainer position='bottom-center' />
       <Form addTask={addTask} />
-      <Tasklist tasks={tasks} deleteTask={deleteTask} />
+      <Tasklist tasks={tasks} editTask={editTask} deleteTask={deleteTask} />
     </section>
   );
 };
