@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Tasklist from './src/components/Tasklist';
 
 //if want to session storage use session storage instead of localstorage
-const getLocalStorage = taskobj => {
+const getLocalStorage = () => {
   let list = localStorage.getItem('list');
   if (list) {
     list = JSON.parse(list);
@@ -18,11 +18,9 @@ const getLocalStorage = taskobj => {
 const setLocalstorage = taskobj => localStorage.setItem('list', JSON.stringify(taskobj));
 
 const App = () => {
-  getLocalStorage();
-  const [tasks, setTasks] = useState(getLocalStorage());
+  const [tasks, setTasks] = useState(getLocalStorage() || []);
 
   const addTask = taskName => {
-    //object will be created
     const newTask = {
       id: nanoid(),
       text: taskName,
@@ -34,34 +32,54 @@ const App = () => {
     setLocalstorage(updatedTask);
     toast.success('item added to the list');
   };
-  // we dont wnat to mutate the existing value so we create a new obj and overrite it with {...}destructure and update in map so the refernce adress will differ
-  //so while editing maksure to copy the array and change the values and not directly change the array values by refernve
-  const editTask = taskId => {
+
+  //during the edting
+  const chekboxEdit = taskId => {
     console.log(taskId);
+    const checkbox = tasks.map(i => {
+      if (i.id === taskId) {
+        const checked = { ...i, isComplete: !i.isComplete };
+        return checked;
+      }
+      return i;
+    });
+    setTasks(checkbox);
+    setLocalstorage(checkbox);
+  };
+
+  const updatedEditedText = (taskId, editedText) => {
+    const updatedTasks = tasks.map(i => {
+      if (i.id === taskId) {
+        const updatetext = {
+          ...i,
+          isComplete: false,
+          text: editedText
+        };
+
+        return updatetext;
+      }
+      return i;
+    });
+    setTasks(updatedTasks);
+    setLocalstorage(updatedTasks);
+    toast.success('task updated successfully');
   };
 
   const deleteTask = taskId => {
     const deletetask = tasks.filter(task => task.id !== taskId);
     setTasks(deletetask);
     setLocalstorage(deletetask);
-    console.log('item deleted');
     toast.error('item deleted');
   };
   return (
     <section className='section-center'>
       <ToastContainer position='bottom-center' />
       <Form addTask={addTask} />
-      <Tasklist tasks={tasks} editTask={editTask} deleteTask={deleteTask} />
+      <Tasklist tasks={tasks} deleteTask={deleteTask} chekboxEdit={chekboxEdit} updatedEditedText={updatedEditedText} />
     </section>
   );
 };
 export default App;
-// tasks.map(task => {
-//   if (task.id === taskId) {
-//     const editItem = { ...task, isComplete: !task.isComplete };
-//     setTasks(editItem);
-//     setLocalstorage(updatedTask);
-//     return editItem;
-//   }
-//   return taskId;
-// });
+
+// we dont wnat to mutate the existing value so we create a new obj and overrite it with {...}destructure and update in map so the refernce adress will differ
+//so while editing maksure to copy the array and change the values and not directly change the array values by refernve
