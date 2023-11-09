@@ -211,7 +211,7 @@ form h4 {
 .single-item p {
   letter-spacing: var(--letterSpacing);
 }
-.delete-btn {
+.fetured-btn {
   padding: 0.15 rem 0.25rem;
   font-size: 0.7 rem;
   background-color: var(--black);

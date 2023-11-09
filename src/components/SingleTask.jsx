@@ -16,21 +16,21 @@ const SingleTask = ({ task, deleteTask, chekboxEdit, updatedEditedText }) => {
   return (
     <div className='single-item'>
       {/* fn1,2,3 */}
-      {isEditing ? <input type='checkbox' checked={false} onClick={() => toast.error('please save changes and strike out')} /> : <input type='checkbox' checked={task.isComplete} onChange={() => chekboxEdit(task.id)} />}
+      {isEditing ? <input type='checkbox' checked={false} onClick={() => toast.error('Please save changes and strike out')} /> : <input type='checkbox' checked={task.isComplete} onChange={() => chekboxEdit(task.id)} />}
 
       {isEditing ? <input type='text' value={editedText} style={{ textTransform: 'capitalize', border: 'none', outline: 'none', background: 'transparent', color: 'inherit' }} autoFocus={false} onChange={e => setEditedText(e.target.value)} /> : <p style={{ textTransform: 'capitalize', textDecoration: task.isComplete && 'line-through' }}>{task.text}</p>}
 
       {isEditing ? (
-        <button className='btn delete-btn' type='button' onClick={handleSaveclick}>
+        <button className='btn fetured-btn' type='button' onClick={handleSaveclick}>
           save
         </button>
       ) : (
-        <button className='btn delete-btn' type='button' onClick={handleEditclick}>
+        <button className='btn fetured-btn' type='button' onClick={handleEditclick}>
           edit
         </button>
       )}
 
-      <button className='btn delete-btn' type='button' onClick={() => deleteTask(task.id)}>
+      <button className='btn fetured-btn' type='button' onClick={() => deleteTask(task.id)}>
         delete
       </button>
     </div>
