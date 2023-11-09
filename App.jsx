@@ -34,7 +34,8 @@ const App = () => {
     setLocalstorage(updatedTask);
     toast.success('item added to the list');
   };
-
+  // we dont wnat to mutate the existing value so we create a new obj and overrite it with {...}destructure and update in map so the refernce adress will differ
+  //so while editing maksure to copy the array and change the values and not directly change the array values by refernve
   const editTask = taskId => {
     console.log(taskId);
   };
@@ -55,3 +56,12 @@ const App = () => {
   );
 };
 export default App;
+// tasks.map(task => {
+//   if (task.id === taskId) {
+//     const editItem = { ...task, isComplete: !task.isComplete };
+//     setTasks(editItem);
+//     setLocalstorage(updatedTask);
+//     return editItem;
+//   }
+//   return taskId;
+// });

@@ -15,9 +15,9 @@ const SingleTask = ({ task, deleteTask, editTask }) => {
 
   return (
     <div className='single-item'>
-      <input type='checkbox' checked={task.isComplete} onChange={() => editTask(!isChecked)} />
+      <input type='checkbox' checked={task.isComplete} onChange={() => setisChecked(!isChecked)} />
 
-      {isEditing ? <input type='text' value={editedText} style={{ textTransform: 'capitalize', border: 'none', outline: 'none', background: 'transparent', color: 'inherit' }} autofocus={false} onChange={e => setEditedText(e.target.value)} /> : <p style={{ textTransform: 'capitalize', textDecoration: isChecked && 'line-through' }}>{task.text}</p>}
+      {isEditing ? <input type='text' value={editedText} style={{ textTransform: 'capitalize', border: 'none', outline: 'none', background: 'transparent', color: 'inherit' }} autoFocus={false} onChange={e => setEditedText(e.target.value)} /> : <p style={{ textTransform: 'capitalize', textDecoration: isChecked && 'line-through' }}>{task.text}</p>}
 
       {isEditing ? (
         <button className='btn delete-btn' type='button' onClick={handleSaveclick}>
