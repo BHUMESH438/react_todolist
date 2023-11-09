@@ -30,7 +30,7 @@ const App = () => {
     const updatedTask = [...tasks, newTask];
     setTasks(updatedTask);
     setLocalstorage(updatedTask);
-    toast.success('item added to the list');
+    toast.success('Task added to the list');
   };
 
   //during the edting
@@ -61,14 +61,14 @@ const App = () => {
     });
     setTasks(updatedTasks);
     setLocalstorage(updatedTasks);
-    toast.success('task updated successfully');
+    toast.success('Task updated successfully');
   };
 
   const deleteTask = taskId => {
     const deletetask = tasks.filter(task => task.id !== taskId);
     setTasks(deletetask);
     setLocalstorage(deletetask);
-    toast.error('item deleted');
+    toast.error('Task deleted');
   };
   return (
     <section className='section-center'>
